@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_project/screens/profile_creen.dart';
 import 'package:firebase_project/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,15 +15,27 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
-          child: Text("Logout"),
-          onPressed: () {
-            FirebaseAuth.instance.signOut().then((value) {
-              print("Signed Out");
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SignInScreen()));
-            });
-          },
+        child: Column(
+          children: [
+            ElevatedButton(
+              child: Text("Profile"),
+              onPressed: () {
+                FirebaseAuth.instance.signOut().then((value) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Profile()));
+                });
+              },
+            ),
+            ElevatedButton(
+              child: Text("Logout"),
+              onPressed: () {
+                FirebaseAuth.instance.signOut().then((value) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                });
+              },
+            ),
+          ],
         ),
       ),
     );
